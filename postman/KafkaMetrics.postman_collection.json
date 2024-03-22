@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "94abac60-a98c-4598-b272-34aac5b481d8",
+		"name": "KafkaMetrics",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23622796"
+	},
+	"item": [
+		{
+			"name": "validation",
+			"item": [
+				{
+					"name": "Post Metric with not supported name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Неподдерживаемое имя метрики\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/metric",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"metric"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Metric with empty name",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/metric",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"metric"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Post new Metric",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"memory\" //Поддерживается пока только имя Memory\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/metric",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"metric"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Metrics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/metrics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Metric by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/metrics/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"metrics",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Укажите id искомой метрики"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
